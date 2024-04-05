@@ -23,13 +23,13 @@ top@{lib, config, ...}: let
     prependPathModule = {lib, pkgs, config, ...}: {
       config = lib.mkMerge [
         (lib.mkIf config.programs.bash.enable {
-          programs.bash.initExtra = "export PATH=$HOME/.local/state/nix/profiles/home-manager/home-path/bin:/run/current-system/sw/bin:$PATH";
+          programs.bash.initExtra = "export PATH=$HOME/.local/state/nix/profiles/home-manager/home-path/bin:/run/wrappers/bin:/run/current-system/sw/bin:$PATH";
         })
         (lib.mkIf config.programs.zsh.enable {
-          programs.zsh.initExtra = "export PATH=$HOME/.local/state/nix/profiles/home-manager/home-path/bin:/run/current-system/sw/bin:$PATH";
+          programs.zsh.initExtra = "export PATH=$HOME/.local/state/nix/profiles/home-manager/home-path/bin:/run/wrappers/bin:/run/current-system/sw/bin:$PATH";
         })
         (lib.mkIf config.programs.fish.enable {
-          programs.fish.shellInit = "set -x PATH $HOME/.local/state/nix/profiles/home-manager/home-path/bin /run/current-system/sw/bin $PATH";
+          programs.fish.shellInit = "set -x PATH $HOME/.local/state/nix/profiles/home-manager/home-path/bin /run/wrappers/bin /run/current-system/sw/bin $PATH";
         })
       ];
     };
